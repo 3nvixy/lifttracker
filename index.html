@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Workout Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<button id="darkBtn" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+
+<div class="container">
+    <h1>Workout Tracker</h1>
+
+    <div class="top-row">
+        <div class="date-box">
+            <label>Date:</label>
+            <input type="date" id="dateInput" onchange="changeDate()">
+        </div>
+
+        <div class="exercise-filter">
+            <label>Filter by exercise:</label>
+            <select id="filterExercise" onchange="updateDisplay()">
+                <option value="">All</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="add-set-box">
+        <h2>Add Set</h2>
+
+        <label>Exercise</label>
+        <input type="text" id="exerciseName" placeholder="e.g. Bench Press">
+
+        <div class="row">
+            <div>
+                <label>Weight (lbs)</label>
+                <input type="number" id="weightInput" placeholder="185">
+            </div>
+            <div>
+                <label>Reps</label>
+                <input type="number" id="repsInput" placeholder="5">
+            </div>
+            <div>
+                <label>Sets</label>
+                <input type="number" id="setsInput" placeholder="3">
+            </div>
+        </div>
+
+        <button onclick="addSet()">Add Set</button>
+    </div>
+
+    <h2>Log for <span id="dateLabel"></span></h2>
+    <ul id="setList"></ul>
+
+    <h3>Summary</h3>
+    <p id="summaryText"></p>
+
+    <h3>Personal Records</h3>
+    <ul id="prList"></ul>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
