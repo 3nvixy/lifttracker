@@ -1,0 +1,151 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: #f4f4f4;
+    color: #222;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.08);
+}
+
+h1 {
+    text-align: center;
+    margin-top: 0;
+}
+
+.top-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.date-box, .exercise-filter {
+    flex: 1;
+    min-width: 220px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input, select {
+    padding: 8px;
+    margin: 5px 0 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px;
+    margin-top: 5px;
+    background: #1976d2;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background: #1565c0;
+}
+
+#darkBtn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: auto;
+    padding: 6px 10px;
+    font-size: 14px;
+    background: #333;
+}
+
+.add-set-box {
+    margin-top: 10px;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.row > div {
+    flex: 1;
+    min-width: 120px;
+}
+
+#setList {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+#setList li {
+    padding: 8px 10px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.delete-btn {
+    background: #e53935;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+.delete-btn:hover {
+    background: #c62828;
+}
+
+/* Dark mode */
+
+body.dark {
+    background: #121212;
+    color: #eee;
+}
+
+body.dark .container {
+    background: #1e1e1e;
+    box-shadow: 0 0 15px rgba(0,0,0,0.6);
+}
+
+body.dark input,
+body.dark select {
+    background: #2b2b2b;
+    color: #eee;
+    border: 1px solid #444;
+}
+
+body.dark button {
+    background: #1565c0;
+}
+
+body.dark button:hover {
+    background: #0d47a1;
+}
+
+body.dark #darkBtn {
+    background: #555;
+}
+
+body.dark .add-set-box {
+    border-color: #444;
+}
