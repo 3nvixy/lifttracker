@@ -1,130 +1,183 @@
+/* ---------- Base ---------- */
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Inter", Arial, sans-serif;
     margin: 0;
     padding: 20px;
-    background: #f4f4f4;
+    background: #eef1f5;
     color: #222;
+    line-height: 1.5;
 }
 
 .container {
-    max-width: 800px;
+    max-width: 850px;
     margin: auto;
-    background: white;
-    padding: 20px 25px 30px;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.08);
+    background: #fff;
+    padding: 25px 30px 40px;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
 }
+
+/* ---------- Titles ---------- */
 
 h1 {
     text-align: center;
     margin-top: 0;
+    font-size: 32px;
+    font-weight: 700;
+    color: #1a1a1a;
 }
+
+h2 {
+    margin-top: 30px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+}
+
+h3 {
+    margin-top: 25px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* ---------- Layout ---------- */
 
 .top-row {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .date-box, .exercise-filter {
     flex: 1;
-    min-width: 220px;
+    min-width: 240px;
 }
 
 label {
-    font-weight: bold;
+    font-weight: 600;
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
+    color: #444;
 }
 
 input, select {
-    padding: 8px;
-    margin: 5px 0 10px;
+    padding: 12px;
+    margin-bottom: 12px;
     width: 100%;
-    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background: #fafafa;
+    font-size: 15px;
+    transition: 0.2s;
 }
 
+input:focus, select:focus {
+    border-color: #1976d2;
+    background: #fff;
+    outline: none;
+}
+
+/* ---------- Buttons ---------- */
+
 button {
-    padding: 10px;
-    margin-top: 5px;
+    padding: 12px 16px;
     background: #1976d2;
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.2s;
 }
 
 button:hover {
-    background: #1565c0;
+    background: #0f5fb3;
 }
 
 #darkBtn {
     position: fixed;
-    top: 10px;
-    right: 10px;
-    width: auto;
-    padding: 6px 10px;
+    top: 15px;
+    right: 15px;
+    padding: 8px 12px;
     font-size: 14px;
     background: #333;
+    border-radius: 8px;
 }
 
+/* ---------- Add Set Box ---------- */
+
 .add-set-box {
-    margin-top: 10px;
-    padding: 15px;
-    border-radius: 8px;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 14px;
     border: 1px solid #ddd;
+    background: #fafafa;
 }
 
 .row {
     display: flex;
-    gap: 10px;
+    gap: 15px;
     flex-wrap: wrap;
 }
 
 .row > div {
     flex: 1;
-    min-width: 120px;
+    min-width: 140px;
 }
+
+/* ---------- Set List ---------- */
 
 #setList {
     list-style: none;
     padding: 0;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 #setList li {
-    padding: 8px 10px;
-    border-bottom: 1px solid #eee;
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: #fff;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
 }
 
 .delete-btn {
     background: #e53935;
-    color: white;
-    border: none;
-    padding: 4px 8px;
-    cursor: pointer;
-    border-radius: 3px;
-    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 13px;
 }
 
 .delete-btn:hover {
     background: #c62828;
 }
 
-/* Dark mode */
+/* ---------- PR List ---------- */
+
+#prList li {
+    padding: 12px 14px;
+    background: #fff;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+/* ---------- Dark Mode ---------- */
 
 body.dark {
-    background: #121212;
+    background: #0f0f0f;
     color: #eee;
 }
 
 body.dark .container {
-    background: #1e1e1e;
-    box-shadow: 0 0 15px rgba(0,0,0,0.6);
+    background: #1a1a1a;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.6);
 }
 
 body.dark input,
@@ -132,6 +185,17 @@ body.dark select {
     background: #2b2b2b;
     color: #eee;
     border: 1px solid #444;
+}
+
+body.dark .add-set-box {
+    background: #222;
+    border-color: #444;
+}
+
+body.dark #setList li,
+body.dark #prList li {
+    background: #2a2a2a;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.4);
 }
 
 body.dark button {
@@ -144,8 +208,4 @@ body.dark button:hover {
 
 body.dark #darkBtn {
     background: #555;
-}
-
-body.dark .add-set-box {
-    border-color: #444;
 }
