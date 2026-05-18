@@ -3,61 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <title>Workout Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-<button id="darkBtn" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+<div class="app">
 
-<div class="container">
-    <h1>Workout Tracker</h1>
-
-    <div class="top-row">
-        <div class="date-box">
-            <label>Date:</label>
-            <input type="date" id="dateInput" onchange="changeDate()">
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <span class="logo-icon">🏋️‍♂️</span>
+                <span class="logo-text">LiftTracker</span>
+            </div>
+            <button class="icon-btn close-btn" onclick="toggleSidebar()">
+                ✕
+            </button>
         </div>
 
-        <div class="exercise-filter">
-            <label>Filter by exercise:</label>
-            <select id="filterExercise" onchange="updateDisplay()">
-                <option value="">All</option>
-            </select>
-        </div>
+        <nav class="sidebar-nav">
+            <button class="nav-item active" data-page="dashboard" onclick="showPage('dashboard')">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </button>
+            <button class="nav-item" data-page="log" onclick="showPage('log')">
+                <span class="nav-icon">💪</span>
+                <span>Workout Log</span>
+            </button>
+            <button class="nav-item" data-page="prs" onclick="showPage('prs')">
+                <span class="nav-icon">🏆</span>
+                <span>PR Records</span>
+            </button>
+            <button class="nav-item" data-page="settings" onclick="showPage('settings')">
+                <span class="nav-icon">⚙️</span>
+                <span>Settings</span>
+            </button>
+        </nav>
+    </aside>
+
+    <div class="main">
+        <header class="topbar">
+            <button id="menuBtn" class="icon-btn" onclick="toggleSidebar()">☰</button>
+            <h1 id="pageTitle">Dashboard</h1>
+            <button id="darkBtn" class="icon-btn" onclick="toggleDarkMode()">🌙</button>
+        </header>
+
+        <main class="content">
+
+            <!-- DASHBOARD PAGE -->
+            <section id="page-dashboard" class="page active">
+                <div class="cards-row">
+                    <div class="card stat-card">
+                        <h3>Total Volume (All Time)</h3>
+                        <p id="statTotalVolume">0</p>
+                    </div>
+                    <div class="card stat-card">
+                        <h3>Total Sets (All Time)</h3>
+                        <p id="statTotalSets">0</p>
+                    </div>
+                    <div class="card stat-card">
+                        <h3>Exercises Tracked</h3>
+                        <p id="statExercises">0</p>
+                    </div>
+                </div>
+
+                <div class="card chart-card">
+                    <h3>Volume Over Time</h3>
+                    <canvas id="volumeChart"></canvas>
+                </div>
+
+                <div class="card chart-card">
+                    <h3>Sets Per Exercise</h3>
+                    <canvas id="setsChart"></canvas>
+                </div>
+
+                <div class="card chart-card">
+                    <h3>Daily Best Weight</h3>
+                    <canvas id="prChart"></canvas>
+                </div>
+            </section>
+
+            <!-- WORKOUT LOG PAGE -->
+            <section id="page-log" class="page">
+                <div class="card">
+                    <div class="top-row">
+                        <div class="date-box">
+                            <label>Date:</label>
+                            <input type="date" id="dateInput" onchange="changeDate()">
+                        </div>
+
+                        <div class="exercise-filter">
+                            <label>Filter by exercise:</label>
+                            <select id="filterExercise" onchange="updateDisplay()">
+                                <option value="">All</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="add-set-box">
+                        <h2>Add Set</h2>
+
+                        <label>Exercise</label>
+                        <input type="text" id="exerciseName" placeholder="e.g. Bench Press">
+
+                        <div class="row">
+                            <div>
+                                <label>Weight (lbs)</label>
+                                <input type="number" id="weightInput" placeholder="185">
+                            </div>
+                            <div>
+                                <label>Reps</label>
+                                <input type="number" id="repsInput" placeholder="5">
+                            </div>
+                            <div>
+                                <label>Sets</label>
+                                <input type="number" id="setsInput" placeholder="3">
+                            </div>
+                        </div>
+
+                        <button onclick="addSet()">Add Set</button>
+                    </div>
+
+                    <h2>Log for <span id="dateLabel"></span></h2>
+                    <ul id="setList"></ul>
+
+                    <h3>Summary</h3>
+                    <p id="summaryText"></p>
+                </div>
+            </section>
+
+            <!-- PR PAGE -->
+            <section id="page-prs" class="page">
+                <div class="card">
+                    <h2>Personal Records</h2>
+                    <ul id="prList"></ul>
+                </div>
+            </section>
+
+            <!-- SETTINGS PAGE -->
+            <section id="page-settings" class="page">
+                <div class="card">
+                    <h2>Settings</h2>
+
+                    <h3>Theme</h3>
+                    <div class="theme-row">
+                        <button class="theme-btn theme-blue active" onclick="setTheme('blue')">Electric Blue</button>
+                        <button class="theme-btn theme-dark" onclick="setTheme('dark')">Dark Focus</button>
+                        <button class="theme-btn theme-neon" onclick="setTheme('neon')">Neon Boost</button>
+                    </div>
+
+                    <h3>Display</h3>
+                    <p>Use the 🌙 button in the top bar to toggle dark mode.</p>
+                </div>
+            </section>
+
+        </main>
     </div>
-
-    <div class="add-set-box">
-        <h2>Add Set</h2>
-
-        <label>Exercise</label>
-        <input type="text" id="exerciseName" placeholder="e.g. Bench Press">
-
-        <div class="row">
-            <div>
-                <label>Weight (lbs)</label>
-                <input type="number" id="weightInput" placeholder="185">
-            </div>
-            <div>
-                <label>Reps</label>
-                <input type="number" id="repsInput" placeholder="5">
-            </div>
-            <div>
-                <label>Sets</label>
-                <input type="number" id="setsInput" placeholder="3">
-            </div>
-        </div>
-
-        <button onclick="addSet()">Add Set</button>
-    </div>
-
-    <h2>Log for <span id="dateLabel"></span></h2>
-    <ul id="setList"></ul>
-
-    <h3>Summary</h3>
-    <p id="summaryText"></p>
-
-    <h3>Personal Records</h3>
-    <ul id="prList"></ul>
 </div>
 
 <script src="app.js"></script>
